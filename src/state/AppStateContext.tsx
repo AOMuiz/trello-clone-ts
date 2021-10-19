@@ -21,7 +21,7 @@ const appData: AppState = {
 };
 
 type Task = {
-  id: String;
+  id: string;
   text: string;
 };
 
