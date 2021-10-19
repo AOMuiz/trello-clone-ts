@@ -44,6 +44,10 @@ type AppStateContextProps = {
   getTasksByListId(id: string): Task[];
 };
 
+export const useAppState = () => {
+  return useContext(AppStateContext);
+};
+
 export const AppStateProvider: FC = ({ children }) => {
   const { lists } = appData;
   const getTasksByListId = (id: string) => {
