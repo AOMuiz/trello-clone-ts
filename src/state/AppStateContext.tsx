@@ -1,18 +1,5 @@
 import { createContext, useContext, FC } from "react";
 
-export const AppStateProvider: FC = ({ children }) => {
-  const { lists } = appData;
-  const getTasksByListId = (id: string) => {
-    return lists.find((list) => list.id === id)?.tasks || [];
-  };
-
-  return (
-    <AppStateContext.Provider value={{ lists, getTasksByListId }}>
-      {children}
-    </AppStateContext.Provider>
-  );
-};
-
 const appData: AppState = {
   lists: [
     {
@@ -55,4 +42,17 @@ const AppStateContext = createContext<AppStateContextProps>(
 type AppStateContextProps = {
   lists: List[];
   getTasksByListId(id: string): Task[];
+};
+
+export const AppStateProvider: FC = ({ children }) => {
+  const { lists } = appData;
+  const getTasksByListId = (id: string) => {
+    return lists.find((list) => list.id === id)?.tasks || [];
+  };
+
+  return (
+    <AppStateContext.Provider value={{ lists, getTasksByListId }}>
+      {children}
+    </AppStateContext.Provider>
+  );
 };
